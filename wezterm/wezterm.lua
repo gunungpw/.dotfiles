@@ -16,9 +16,7 @@ config.font =
 
 -- Default Shell
 config.default_prog = {
-    "nu",
-    "--config C:\\Users\\Acer\\dotfiles\\nushell\\config.nu",
-    "--env-config C:\\Users\\Acer\\dotfiles\\nushell\\env.nu"
+    "nu"
 }
 
 config.max_fps = 60
