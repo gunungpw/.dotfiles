@@ -1,11 +1,3 @@
-# Nushell Config File
-#
-# version = "0.96.1"
-
-# For more information on defining custom themes, see
-# https://www.nushell.sh/book/coloring_and_theming.html
-# And here is the theme collection
-# https://github.com/nushell/nu_scripts/tree/main/themes
 let dark_theme = {
     # color for nushell primitives
     separator: white
@@ -831,6 +823,4 @@ $env.config = {
 
 alias vv = overlay use .venv\Scripts\activate.nu
 alias ls = eza --sort type
-alias show = bat
-alias edit = micro
 alias vr = uv run
