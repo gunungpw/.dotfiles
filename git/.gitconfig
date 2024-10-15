@@ -1,3 +1,9 @@
 [user]
 	name = gunungpw
 	email = gunungpambudiw@gmail.com
+[core]
+	editor = \"C:\\Users\\Acer\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+[gui]
+	recentrepo = C:/Users/Acer/Projects/personal-site
+[credential "helperselector"]
+	selected = manager
