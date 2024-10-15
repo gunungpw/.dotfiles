@@ -814,23 +814,6 @@ $env.config = {
 $env.XDG_CONFIG_HOME = $nu.home-path | path join .dotfiles
 $env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .python
 
-source ~/.zoxide.nu
-
-alias vr = uv run
-
-def vv [] {
-    let venv_path = $env.PWD | path join .venv Scripts activate.nu
-    $venv_path | path exists
-
-    if (not ($venv_path | path exists)) {
-        print "Error: Script not found at $venv_path"
-        exit 1
-    } else {
-        vr
-    }
-}
-
-alias viiii = overlay use .venv\Scripts\activate.nu
-alias vd = overlay use .venv\Scripts\activate.nu
+alias vv = overlay use .venv\Scripts\activate.nu
 alias ls = eza --sort type
 alias vr = uv run
