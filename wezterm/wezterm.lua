@@ -2,7 +2,7 @@ local wezterm = require "wezterm"
 local config = {}
 
 -- Settings for looks
-config.color_scheme = "Monokai"
+config.color_scheme = "Mathias (Gogh)"
 config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.font_size = 10.0

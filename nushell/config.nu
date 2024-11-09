@@ -160,7 +160,7 @@ $env.config = {
         # osc8 is also implemented as the deprecated setting ls.show_clickable_links, it shows clickable links in ls output if your terminal supports it. show_clickable_links is deprecated in favor of osc8
         osc8: true
         # osc9_9 is from ConEmu and is starting to get wider support. It's similar to osc7 in that it communicates the path to the terminal
-        osc9_9: false
+        osc9_9: true
         # osc133 is several escapes invented by Final Term which include the supported ones below.
         # 133;A - Mark prompt start
         # 133;B - Mark prompt end
@@ -810,10 +810,11 @@ $env.config = {
     ]
 }
 
-# Environment Variable
-$env.XDG_CONFIG_HOME = $nu.home-path | path join .dotfiles
-$env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .python
+# windows activate virtual environment
+alias vw = overlay use .venv\Scripts\activate.nu
+# linux activate virtual environment
+alias vl = overlay use .venv\bin\activate.nu
 
-alias vv = overlay use .venv\Scripts\activate.nu
 alias ls = eza --sort type
-alias vr = uv run
+alias la = eza -a --sort type
+alias uvr = uv run

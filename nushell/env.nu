@@ -2,6 +2,8 @@
 #
 # version = "0.96.1"
 
+use std "path add"
+
 def create_left_prompt [] {
     let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
@@ -90,14 +92,20 @@ $env.NU_PLUGIN_DIRS = [
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 # An alternate way to add entries to $env.PATH is to use the custom command `path add`
 # which is built into the nushell stdlib:
-# use std "path add"
+
 # $env.PATH = ($env.PATH | split row (char esep))
 # path add /some/path
 # path add ($env.CARGO_HOME | path join "bin")
-# path add ($env.HOME | path join ".local" "bin")
+
 # $env.PATH = ($env.PATH | uniq)
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
-zoxide init nushell | save -f ~/.zoxide.nu
+# Environment Variable
+$env.XDG_CONFIG_HOME = $nu.home-path | path join .dotfiles
+$env.UV_INSTALL_DIR = $nu.home-path | path join .local bin
+$env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local python
+
+# Add directory to PATH
+path add ($nu.home-path | path join .local bin)
