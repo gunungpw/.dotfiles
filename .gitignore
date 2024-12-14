@@ -1,2 +1,5 @@
 nushell/history.txt
+nushell/history.sqlite3
+nushell/history.sqlite3-shm
+nushell/history.sqlite3-wal
 micro/buffers/history

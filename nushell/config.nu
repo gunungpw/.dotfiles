@@ -117,7 +117,7 @@ $env.config = {
     history: {
         max_size: 100_000 # Session has to be reloaded for this to take effect
         sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
-        file_format: "plaintext" # "sqlite" or "plaintext"
+        file_format: "sqlite" # "sqlite" or "plaintext"
         isolation: false # only available with sqlite file_format. true enables history isolation, false disables it. true will allow the history to be isolated to the current session using up/down arrows. false will allow the history to be shared across all sessions.
     }
 
@@ -811,9 +811,9 @@ $env.config = {
 }
 
 # windows activate virtual environment
-alias vw = overlay use .venv\Scripts\activate.nu
+alias vw = overlay use .venv/Scripts/activate.nu
 # linux activate virtual environment
-alias vl = overlay use .venv\bin\activate.nu
+alias vl = overlay use .venv/bin/activate.nu
 
 alias ls = eza --sort type
 alias la = eza -a --sort type
