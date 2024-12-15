@@ -14,28 +14,10 @@ def create_left_prompt [] {
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
 
-def create_right_prompt [] {
-    # create a right prompt in magenta with green separators and am/pm underlined
-    let time_segment = ([
-        (ansi reset)
-        (ansi magenta)
-        (date now | format date '%x %X') # try to respect user's locale
-    ] | str join | str replace --regex --all "([/:])" $"(ansi green)${1}(ansi magenta)" |
-        str replace --regex --all "([AP]M)" $"(ansi magenta_underline)${1}")
-
-    let last_exit_code = if ($env.LAST_EXIT_CODE != 0) {([
-        (ansi rb)
-        ($env.LAST_EXIT_CODE)
-    ] | str join)
-    } else { "" }
-
-    ([$last_exit_code, (char space), $time_segment] | str join)
-}
-
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| create_left_prompt }
-# FIXME: This default is not implemented in rust code as of 2023-09-08.
-$env.PROMPT_COMMAND_RIGHT = {|| "root"}
+
+$env.PROMPT_COMMAND = {|| $"(ansi ligr)[(sys host | get name)] (create_left_prompt) " }
+$env.PROMPT_COMMAND_RIGHT = {|| }
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
@@ -102,6 +84,7 @@ $env.NU_PLUGIN_DIRS = [
 $env.XDG_CONFIG_HOME = $nu.home-path | path join .dotfiles
 $env.UV_INSTALL_DIR = $nu.home-path | path join .local bin
 $env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local python
+$env.GIT_CONFIG_GLOBAL = $nu.home-path | path join .dotfiles git .gitconfig
 
 # Add directory to PATH
 path add ($nu.home-path | path join .local bin)
