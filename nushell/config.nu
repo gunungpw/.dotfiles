@@ -817,4 +817,5 @@ alias vl = overlay use .venv/bin/activate.nu
 
 alias ls = eza --sort type
 alias la = eza -a --sort type
+alias lh = eza -lh --sort type
 alias uvr = uv run
