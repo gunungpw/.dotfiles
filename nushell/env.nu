@@ -16,7 +16,7 @@ def create_left_prompt [] {
 
 # Use nushell functions to define your right and left prompt
 
-$env.PROMPT_COMMAND = {|| $"(ansi dgrb)[(sys host | get name)](ansi reset) (create_left_prompt) " }
+$env.PROMPT_COMMAND = {|| $"(ansi dgrb)(sys host | get hostname)(ansi reset) (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {|| "" }
 
 # The prompt indicators are environmental variables that represent
