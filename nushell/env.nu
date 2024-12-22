@@ -56,4 +56,4 @@ $env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local py
 $env.GIT_CONFIG_GLOBAL = $nu.home-path | path join .dotfiles git .gitconfig
 
 # Add directory to PATH
-path add ($nu.home-path | path join .local bin)
+path add $env.XDG_BIN_HOME
