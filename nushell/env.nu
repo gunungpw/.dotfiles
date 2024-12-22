@@ -50,8 +50,9 @@ $env.NU_LIB_DIRS = [
 
 # Environment Variable
 $env.XDG_CONFIG_HOME = $nu.home-path | path join .dotfiles
-$env.UV_INSTALL_DIR = $nu.home-path | path join .local bin
-$env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local python
+$env.XDG_BIN_HOME = $nu.home-path | path join .local bin
+$env.XDG_DATA_HOME = $nu.home-path | path join .local share
+$env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local py
 $env.GIT_CONFIG_GLOBAL = $nu.home-path | path join .dotfiles git .gitconfig
 
 # Add directory to PATH
