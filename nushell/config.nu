@@ -11,3 +11,8 @@ alias ls = eza --sort type
 alias la = eza -a --sort type
 alias lh = eza -lh --sort type
 alias uvr = uv run
+
+# Custom commands
+def see [file] {
+    open $file --raw  | nu-highlight
+}
