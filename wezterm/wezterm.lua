@@ -1,4 +1,11 @@
 local wezterm = require "wezterm"
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function()
+    local tab, pane, window = mux.spawn_window{}
+    window:gui_window():maximize()
+  end)
+
 local config = {}
 
 -- Settings for looks
@@ -21,7 +28,7 @@ config.default_prog = {
 
 config.max_fps = 60
 
-config.initial_cols = 120
+config.initial_cols = 160
 config.initial_rows = 30
 
 return config
