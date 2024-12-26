@@ -16,3 +16,5 @@ alias uvr = uv run
 def see [file] {
     open $file --raw  | nu-highlight
 }
+
+source zoxide.nu
