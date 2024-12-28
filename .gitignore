@@ -1,3 +1,6 @@
 nushell/history.*
 bash/.bash_history
 helix/runtime
+**/*.lock
+uv/
+**/*.pyc

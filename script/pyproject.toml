@@ -1,0 +1,8 @@
+[project]
+name = "scripts"
+version = "0.1.0"
+description = "personal scripts"
+requires-python = ">=3.13"
+dependencies = [
+    "urllib3>=2.3.0",
+]
