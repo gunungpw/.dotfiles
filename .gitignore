@@ -4,3 +4,5 @@ helix/runtime
 **/*.lock
 uv/
 **/*.pyc
+astro/
+nextjs-nodejs/
