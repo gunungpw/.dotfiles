@@ -41,16 +41,18 @@ def main(prog_list: dict):
     bin_directory = os.getenv("XDG_BIN_HOME")
     for file_name in os.listdir(bin_directory):
         if file_name.endswith(".exe"):
-            if file_name[:-4] in list(prog_list.keys()):
-                binary_path = os.path.join(bin_directory, file_name)
-                latest = check_latest_release(prog_list.get(file_name[:-4]))
-                local = check_binary_version(binary_path)
-                if latest == local:
-                    res.append(f"{file_name[:-4]} -> {local}")
-                else:
-                    res.append(
-                        f"\033[92m{file_name[:-4]} -> {local} -> {latest}\033[0m"
-                    )
+            file_name = file_name[:-4]
+            
+        if file_name in list(prog_list.keys()):
+            binary_path = os.path.join(bin_directory, file_name)
+            latest = check_latest_release(prog_list.get(file_name))
+            local = check_binary_version(binary_path)
+            if latest == local:
+                res.append(f"{file_name} -> {local}")
+            else:
+                res.append(
+                    f"\033[92m{file_name} -> {local} -> {latest}\033[0m"
+                )
 
     for name in res:
         print(name)
