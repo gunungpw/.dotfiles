@@ -14,8 +14,16 @@ def create_left_prompt [] {
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
 
+def check_os [] {
+    if (uname | get kernel-name) == "Windows_NT" {
+        return $"(ansi blue_bold)WIN(ansi reset)"
+    } else {
+        return $"(ansi blue_bold)LIN(ansi reset)"
+    }
+}
+
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| $"(ansi dgrb)(sys host | get hostname)(ansi reset) (create_left_prompt) " }
+$env.PROMPT_COMMAND = {|| $"(check_os) (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # Environment Variable
