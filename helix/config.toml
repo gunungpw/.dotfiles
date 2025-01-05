@@ -2,3 +2,11 @@ theme = "dracula"
 
 [keys.insert]
 C-s = ":w"
+
+[editor]
+color-modes = true
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"

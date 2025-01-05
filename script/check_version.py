@@ -46,6 +46,8 @@ def main(prog_list: dict):
         if file_name in list(prog_list.keys()):
             binary_path = os.path.join(bin_directory, file_name)
             latest = check_latest_release(prog_list.get(file_name))
+            if file_name == 'hx':
+                latest = latest.replace(".0", ".")
             local = check_binary_version(binary_path)
             if latest == local:
                 res.append(f"{file_name} -> {local}")
