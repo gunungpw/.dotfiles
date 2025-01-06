@@ -1,0 +1,11 @@
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+[language-server.ruff.config.settings]
+lineLength = 120
+
+[[language]]
+name = "python"
+language-servers = ["ruff"]
+auto-format = true

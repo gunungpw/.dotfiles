@@ -20,17 +20,13 @@ def get_version_number(tag: str) -> str:
 
 
 def check_latest_release(repo: str):
-    respon = urllib3.request(
-        method="GET", url=f"https://api.github.com/repos/{repo}/releases/latest"
-    )
+    respon = urllib3.request(method="GET", url=f"https://api.github.com/repos/{repo}/releases/latest")
     return get_version_number(respon.json().get("tag_name"))
 
 
 def check_binary_version(binary_path: str) -> str:
     try:
-        result = subprocess.run(
-            [binary_path, "--version"], capture_output=True, text=True, check=True
-        )
+        result = subprocess.run([binary_path, "--version"], capture_output=True, text=True, check=True)
         return get_version_number(result.stdout.strip())
     except (subprocess.CalledProcessError, FileNotFoundError):
         return "Version check failed or binary not found/executable."
@@ -46,7 +42,7 @@ def main(prog_list: dict):
         if file_name in list(prog_list.keys()):
             binary_path = os.path.join(bin_directory, file_name)
             latest = check_latest_release(prog_list.get(file_name))
-            if file_name == 'hx':
+            if file_name == "hx":
                 latest = latest.replace(".0", ".")
             local = check_binary_version(binary_path)
             if latest == local:
