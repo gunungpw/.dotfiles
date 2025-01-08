@@ -46,9 +46,9 @@ def main(prog_list: dict):
                 latest = latest.replace(".0", ".")
             local = check_binary_version(binary_path)
             if latest == local:
-                res.append(f"{file_name} -> {local}")
+                res.append(f"{file_name:<6} -> {local:<8}")
             else:
-                res.append(f"\033[92m{file_name} -> {local} -> {latest}\033[0m")
+                res.append(f"\033[92m{file_name:<6} -> {local:<8} -> {latest}\033[0m")
 
     for name in res:
         print(name)
