@@ -7,6 +7,9 @@ alias vw = overlay use .venv/Scripts/activate.nu # windows activate virtual envi
 alias vl = overlay use .venv/bin/activate.nu # linux activate virtual environment
 
 alias uvr = uv run
+alias rr = rm -r
+alias la = ls -a
+alias l = ls
 
 # Custom commands
 def see [file] {
