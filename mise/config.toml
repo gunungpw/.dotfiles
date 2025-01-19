@@ -1,2 +1,6 @@
 [tools]
+bun = "latest"
+gh = "latest"
+jj = "latest"
 node = "latest"
+zoxide = "latest"
