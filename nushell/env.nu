@@ -30,8 +30,12 @@ $env.PROMPT_COMMAND_RIGHT = {||}
 $env.XDG_CONFIG_HOME = $nu.home-path | path join .dotfiles
 $env.XDG_BIN_HOME = $nu.home-path | path join .local bin
 $env.XDG_DATA_HOME = $nu.home-path | path join .local share
+$env.XDG_CACHE_HOME = $nu.home-path | path join .local cache
 $env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local py
-$env.GIT_CONFIG_GLOBAL = $nu.home-path | path join .dotfiles git .gitconfig
+$env.UV_CACHE_DIR = $env.XDG_CACHE_HOME | path join uv
+$env.GIT_CONFIG_GLOBAL = $env.XDG_CONFIG_HOME | path join git .gitconfig
+$env.BUN_INSTALL_DIR_CACHE = $nu.home-path | path join .local cache
+$env.NODE_REPL_HISTORY = $env.XDG_DATA_HOME | path join node node_history
 
 # Add directory to PATH
 path add $env.XDG_BIN_HOME
