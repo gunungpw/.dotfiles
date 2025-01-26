@@ -26,19 +26,26 @@ def check_os [] {
 $env.PROMPT_COMMAND = {|| $"(check_os) (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
-# Environment Variable
+# XDG - Base Directory Specification
 $env.XDG_CONFIG_HOME = $nu.home-path | path join .dotfiles
 $env.XDG_BIN_HOME = $nu.home-path | path join .local bin
 $env.XDG_DATA_HOME = $nu.home-path | path join .local share
 $env.XDG_CACHE_HOME = $nu.home-path | path join .local cache
 $env.XDG_STATE_HOME = $nu.home-path | path join .local state
+
+# Configuration Environment Variable
+$env.GIT_CONFIG_GLOBAL = $env.XDG_CONFIG_HOME | path join git .gitconfig
+
+# Cache Environment Variable
 $env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local py
 $env.UV_CACHE_DIR = $env.XDG_CACHE_HOME | path join uv
-$env.GIT_CONFIG_GLOBAL = $env.XDG_CONFIG_HOME | path join git .gitconfig
 $env.BUN_INSTALL_DIR_CACHE = $nu.home-path | path join .local cache
+
+# History Environment Variable
 $env.NODE_REPL_HISTORY = $env.XDG_DATA_HOME | path join node node_history
 $env.LESSHISTFILE = $env.XDG_STATE_HOME | path join less history
-$env.PYTHON_HISTORY = $env.XDG_DATA_HOME | path join python history
+$env.PYTHON_HISTORY = $env.XDG_DATA_HOME
+$env._ZO_DATA_DIR = $env.XDG_DATA_HOME
 
 # Add directory to PATH
 path add $env.XDG_BIN_HOME
