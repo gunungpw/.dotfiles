@@ -45,7 +45,7 @@ $env.BUN_INSTALL_DIR_CACHE = $nu.home-path | path join .local cache
 $env.NODE_REPL_HISTORY = $env.XDG_DATA_HOME | path join node node_history
 $env.LESSHISTFILE = $env.XDG_STATE_HOME | path join less history
 $env.PYTHON_HISTORY = $env.XDG_DATA_HOME
-$env._ZO_DATA_DIR = $env.XDG_DATA_HOME
+$env._ZO_DATA_DIR = $env.XDG_DATA_HOME | path join zoxide
 
 # Add directory to PATH
 path add $env.XDG_BIN_HOME
