@@ -3,3 +3,6 @@
 	email = gunungpambudiw@gmail.com
 [core]
 	editor = hx
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
