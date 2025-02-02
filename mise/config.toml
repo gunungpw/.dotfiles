@@ -1,5 +1,4 @@
 [tools]
-bun = "latest"
 fzf = "latest"
 gh = "latest"
 jj = "latest"
