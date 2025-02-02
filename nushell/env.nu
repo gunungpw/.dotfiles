@@ -42,9 +42,9 @@ $env.UV_CACHE_DIR = $env.XDG_CACHE_HOME | path join uv
 $env.BUN_INSTALL_DIR_CACHE = $nu.home-path | path join .local cache
 
 # History Environment Variable
-$env.NODE_REPL_HISTORY = $env.XDG_DATA_HOME | path join node node_history
-$env.LESSHISTFILE = $env.XDG_STATE_HOME | path join less less_history
-$env.PYTHON_HISTORY = $env.XDG_DATA_HOME | path join python python_history
+$env.NODE_REPL_HISTORY = $env.XDG_DATA_HOME | path join history_node
+$env.LESSHISTFILE = $env.XDG_DATA_HOME | path join history_less
+$env.PYTHON_HISTORY = $env.XDG_DATA_HOME | path join history_python
 $env._ZO_DATA_DIR = $env.XDG_DATA_HOME | path join zoxide
 
 # Add directory to PATH
