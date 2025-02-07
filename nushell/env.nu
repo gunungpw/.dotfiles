@@ -1,4 +1,4 @@
-use std "path add"
+use std/util "path add"
 
 def create_left_prompt [] {
     let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
