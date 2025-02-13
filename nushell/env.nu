@@ -39,7 +39,7 @@ $env.GIT_CONFIG_GLOBAL = $env.XDG_CONFIG_HOME | path join git .gitconfig
 # Cache Environment Variable
 $env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local py
 $env.UV_CACHE_DIR = $env.XDG_CACHE_HOME | path join uv
-$env.UV_TOOL_DIR = $env.XDG_DATA_HOME | path join uv_tool
+$env.UV_TOOL_DIR = $env.XDG_DATA_HOME | path join uv tools
 $env.UV_TOOL_BIN_DIR = $env.XDG_BIN_HOME
 $env.BUN_INSTALL_DIR_CACHE = $nu.home-path | path join .local cache
 
