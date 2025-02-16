@@ -1,6 +1,2 @@
 [tools]
-fzf = "latest"
-gh = "latest"
-jj = "latest"
 node = "latest"
-zoxide = "latest"
