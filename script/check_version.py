@@ -11,6 +11,9 @@ data = {
     "bun": "oven-sh/bun",
     "jj": "jj-vcs/jj",
     "hx": "helix-editor/helix",
+    "fzf": "junegunn/fzf",
+    "mise": "jdx/mise",
+    "ubi": "houseabsolute/ubi",
 }
 
 
