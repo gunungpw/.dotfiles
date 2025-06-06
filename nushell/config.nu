@@ -17,4 +17,3 @@ def see [file] {
 }
 
 source zoxide.nu
-source mise.nu
