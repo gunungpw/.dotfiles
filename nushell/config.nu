@@ -7,8 +7,8 @@ alias vw = overlay use .venv/Scripts/activate.nu # windows activate virtual envi
 alias vl = overlay use .venv/bin/activate.nu # linux activate virtual environment
 
 alias uvr = uv run
-alias rr = rm -r
-alias la = ls -a
+alias rr = rm --recursive
+alias la = ls --all
 alias l = ls
 alias ll = ls | sort-by type
 
