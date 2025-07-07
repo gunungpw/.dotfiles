@@ -8,7 +8,7 @@ alias vl = overlay use .venv/bin/activate.nu # linux activate virtual environmen
 
 alias uvr = uv run
 alias rr = rm --recursive
-alias la = ls --all
+alias la = ls --all | sort-by type
 alias l = ls
 alias ll = ls | sort-by type
 
