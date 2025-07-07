@@ -10,6 +10,7 @@ alias uvr = uv run
 alias rr = rm -r
 alias la = ls -a
 alias l = ls
+alias ll = ls | sort-by type
 
 # Custom commands
 def see [file] {
