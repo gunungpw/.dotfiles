@@ -6,3 +6,12 @@ uv/
 **/*.pyc
 astro/
 nextjs-nodejs/
+dconf/
+gtk-3.0/
+evolution/
+ibus/
+org.gnome.Ptyxis/
+pulse/
+yelp/
+mimeapps.list
+.gsd-keyboard.settings-ported
