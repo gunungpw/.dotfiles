@@ -1,4 +1,3 @@
-nushell/history.*
 bash/.bash_history
 helix/runtime
 **/*.lock
@@ -15,3 +14,16 @@ pulse/
 yelp/
 mimeapps.list
 .gsd-keyboard.settings-ported
+cosmic
+dosbox
+micro/buffers/history
+micro/bindings.json
+nautilus
+qalculate
+rclone
+toolbox
+arkrc
+gnome-initial-setup-done
+kdeglobals
+knfsshare
+menus/applications-merged
