@@ -49,8 +49,12 @@ $env.LESSHISTFILE = $env.XDG_DATA_HOME | path join history_less
 $env.PYTHON_HISTORY = $env.XDG_DATA_HOME | path join history_python
 $env._ZO_DATA_DIR = $env.XDG_DATA_HOME | path join zoxide
 
+# Special Binary Path
+$env.BUN_BIN_PATH = $nu.home-path | path join .bun bin
+
 # Add directory to PATH
 path add $env.XDG_BIN_HOME
+path add $env.BUN_BIN_PATH
 
 $env.config.show_banner = false
 $env.config.history.file_format = "sqlite"
@@ -62,17 +66,27 @@ alias vl = overlay use .venv/bin/activate.nu # linux activate virtual environmen
 
 alias uvr = uv run
 alias rr = rm --recursive
-alias l = ls
 
 # Custom commands
 def see [file] { open $file --raw  | nu-highlight }
-def ll [] { ls | sort-by type } # Alias for ls and sort-by type
+def l [] { ls | sort-by type } # Alias for ls and sort-by type
 def la [] { ls --all | sort-by type } # Alias for show all hidden and sort-by type
 
 # Check binary version
 def check-system [] {
     cd ($env.XDG_CONFIG_HOME | path join script);
     uv run check_version.py;
+}
+
+# Yazi shortcut CWD
+def --env y [...args] {
+	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+	yazi ...$args --cwd-file $tmp
+	let cwd = (open $tmp)
+	if $cwd != "" and $cwd != $env.PWD {
+		cd $cwd
+	}
+	rm -fp $tmp
 }
 
 source zoxide.nu
