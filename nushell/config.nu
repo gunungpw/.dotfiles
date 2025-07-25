@@ -22,8 +22,17 @@ def check_os [] {
     }
 }
 
+def container [] {
+	if ($env.CONTAINER_ID? | is-empty) == false {
+		return $"-container:($env.CONTAINER_ID)"
+	} else {
+		""
+	}
+ 
+}
+
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| $"(check_os) (create_left_prompt) " }
+$env.PROMPT_COMMAND = {|| $"($env.USER)@($env.HOSTNAME)(container) (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # XDG - Base Directory Specification
@@ -35,6 +44,7 @@ $env.XDG_STATE_HOME = $nu.home-path | path join .local state
 
 # Configuration Environment Variable
 $env.GIT_CONFIG_GLOBAL = $env.XDG_CONFIG_HOME | path join git .gitconfig
+$env.EDITOR = "micro"
 
 # Cache Environment Variable
 $env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local py
@@ -58,13 +68,12 @@ path add $env.BUN_BIN_PATH
 
 $env.config.show_banner = false
 $env.config.history.file_format = "sqlite"
-$env.config.buffer_editor = "hx"
 $env.config.shell_integration.osc133 = false
 
 alias vw = overlay use .venv/Scripts/activate.nu # windows activate virtual environment
 alias vl = overlay use .venv/bin/activate.nu # linux activate virtual environment
 
-alias uvr = uv run
+alias vv = uv run
 alias rr = rm --recursive
 
 # Custom commands

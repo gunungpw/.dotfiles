@@ -12,7 +12,6 @@ ibus/
 org.gnome.Ptyxis/
 pulse/
 yelp/
-mimeapps.list
 .gsd-keyboard.settings-ported
 cosmic
 dosbox
@@ -27,3 +26,4 @@ gnome-initial-setup-done
 kdeglobals
 knfsshare
 menus/applications-merged
+libreoffice/4
