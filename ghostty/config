@@ -6,3 +6,4 @@
 
 command = nu
 font-size = 10
+theme = Builtin Pastel Dark
