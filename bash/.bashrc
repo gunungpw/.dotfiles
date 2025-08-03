@@ -28,3 +28,11 @@ echo "\[\e[1m\]\u@\h\[\e[0m\]: \w \$ "; fi )'
 # Alias
 alias ..="cd .."
 alias la="ls -a"
+
+export XDG_CONFIG_HOME="$HOME/.dotfiles"
+export PATH="$HOME/.local/bin:$PATH"
+
+# If CONTAINER_ID is set, switch to NuShell
+if [ -n "$CONTAINER_ID" ]; then
+    exec nu
+fi

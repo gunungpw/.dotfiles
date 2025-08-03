@@ -24,7 +24,7 @@ def check_os [] {
 
 def container [] {
 	if ($env.CONTAINER_ID? | is-empty) == false {
-		return $"-container:($env.CONTAINER_ID)"
+		return $"(ansi purple_bold) [box:($env.CONTAINER_ID)](ansi reset)"
 	} else {
 		""
 	}
@@ -32,7 +32,7 @@ def container [] {
 }
 
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| $"($env.USER)@($env.HOSTNAME)(container) (create_left_prompt) " }
+$env.PROMPT_COMMAND = {|| $"($env.USER)@($env.HOSTNAME)(container) : (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # XDG - Base Directory Specification
