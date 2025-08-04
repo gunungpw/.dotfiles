@@ -14,12 +14,17 @@ def create_left_prompt [] {
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
 
-def check_os [] {
-    if (uname | get kernel-name) == "Windows_NT" {
-        return $"(ansi blue_bold)WIN(ansi reset)"
-    } else {
-        return $"(ansi blue_bold)LIN(ansi reset)"
+def get_git_branch [] {
+    if (which git | is-empty) {
+        return ""
     }
+
+    let git_current_ref = (do { git rev-parse --abbrev-ref HEAD } | complete | get stdout | str trim)
+    if ($git_current_ref != "") {
+        return $" (ansi cyan_bold)[($git_current_ref)](ansi reset)"
+    }
+
+    return ""
 }
 
 def container [] {
@@ -32,7 +37,7 @@ def container [] {
 }
 
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| $"($env.USER)@($env.HOSTNAME)(container) : (create_left_prompt) " }
+$env.PROMPT_COMMAND = {|| $"(ansi blue_bold)($env.USER)@($env.HOSTNAME)(ansi reset)(container)(get_git_branch): (create_left_prompt)\n" }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # XDG - Base Directory Specification
