@@ -15,14 +15,10 @@ def create_left_prompt [] {
 }
 
 def get_git_branch [] {
-    if (which git | is-empty) {
-        return ""
-    }
+    if (which git | is-empty) { return "" }
 
     let git_current_ref = (do { git rev-parse --abbrev-ref HEAD } | complete | get stdout | str trim)
-    if ($git_current_ref != "") {
-        return $" (ansi cyan_bold)[($git_current_ref)](ansi reset)"
-    }
+    if ($git_current_ref != "") { return $"(ansi cyan_bold)[($git_current_ref)](ansi reset)" }
 
     return ""
 }
@@ -37,7 +33,7 @@ def container [] {
 }
 
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| $"(ansi blue_bold)($env.USER)@($env.HOSTNAME)(ansi reset)(container)(get_git_branch): (create_left_prompt)\n" }
+$env.PROMPT_COMMAND = {|| $"(ansi blue_bold)($env.USER)@($env.HOSTNAME)(ansi reset)(container)(get_git_branch): (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # XDG - Base Directory Specification
@@ -56,6 +52,7 @@ $env.UV_PYTHON_INSTALL_DIR = $nu.home-path | path join .local py
 $env.UV_CACHE_DIR = $env.XDG_CACHE_HOME | path join uv
 $env.UV_TOOL_DIR = $env.XDG_DATA_HOME | path join uv tools
 $env.UV_TOOL_BIN_DIR = $env.XDG_BIN_HOME
+$env.BUN_INSTALL = $nu.home-path | path join .local
 $env.BUN_INSTALL_DIR_CACHE = $nu.home-path | path join .local cache
 
 # History Environment Variable
@@ -64,12 +61,8 @@ $env.LESSHISTFILE = $env.XDG_DATA_HOME | path join history_less
 $env.PYTHON_HISTORY = $env.XDG_DATA_HOME | path join history_python
 $env._ZO_DATA_DIR = $env.XDG_DATA_HOME | path join zoxide
 
-# Special Binary Path
-$env.BUN_BIN_PATH = $nu.home-path | path join .bun bin
-
 # Add directory to PATH
 path add $env.XDG_BIN_HOME
-path add $env.BUN_BIN_PATH
 
 $env.config.show_banner = false
 $env.config.history.file_format = "sqlite"
