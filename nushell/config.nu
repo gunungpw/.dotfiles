@@ -32,8 +32,10 @@ def container [] {
  
 }
 
+let hostname = ( sys host | get hostname )
+
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| $"(ansi blue_bold)($env.USER)@($env.HOSTNAME)(ansi reset)(container)(get_git_branch): (create_left_prompt) " }
+$env.PROMPT_COMMAND = {|| $"(ansi blue_bold)($env.USER)@($hostname)(ansi reset)(container)(get_git_branch): (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # XDG - Base Directory Specification
@@ -67,6 +69,7 @@ path add $env.XDG_BIN_HOME
 $env.config.show_banner = false
 $env.config.history.file_format = "sqlite"
 $env.config.shell_integration.osc133 = false
+$env.config.completions.algorithm = "fuzzy"
 
 alias vw = overlay use .venv/Scripts/activate.nu # windows activate virtual environment
 alias vl = overlay use .venv/bin/activate.nu # linux activate virtual environment
