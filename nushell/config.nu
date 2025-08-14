@@ -76,6 +76,7 @@ alias vl = overlay use .venv/bin/activate.nu # linux activate virtual environmen
 
 alias vv = uv run
 alias rr = rm --recursive
+alias denter = distrobox enter # enter distrobox container
 
 # Custom commands
 def see [file] { open $file --raw  | nu-highlight }
@@ -83,7 +84,7 @@ def l [] { ls | sort-by type } # Alias for ls and sort-by type
 def la [] { ls --all | sort-by type } # Alias for show all hidden and sort-by type
 
 # Check binary version
-def check-system [] {
+def z-check-system [] {
     cd ($env.XDG_CONFIG_HOME | path join script);
     uv run check_version.py;
 }
@@ -97,6 +98,10 @@ def --env y [...args] {
 		cd $cwd
 	}
 	rm -fp $tmp
+}
+
+def z-download [link] {
+	curl -O $link
 }
 
 source zoxide.nu
