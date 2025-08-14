@@ -89,3 +89,5 @@ nushell/history.sqlite3-shm
 nushell/history.sqlite3-wal
 nushell/history.txt
 VSCodium
+goa-1.0
+monitors.xml*
