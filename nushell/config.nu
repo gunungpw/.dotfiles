@@ -1,41 +1,19 @@
 use std/util "path add"
-
-def create_left_prompt [] {
-    let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
-        null => $env.PWD
-        '' => '~'
-        $relative_pwd => ([~ $relative_pwd] | path join)
-    }
-
-    let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
-    let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
-    let path_segment = $"($path_color)($dir)"
-
-    $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
-}
-
-def get_git_branch [] {
-    if (which git | is-empty) { return "" }
-
-    let git_current_ref = (do { git rev-parse --abbrev-ref HEAD } | complete | get stdout | str trim)
-    if ($git_current_ref != "") { return $"(ansi cyan_bold)[($git_current_ref)](ansi reset)" }
-
-    return ""
-}
-
-def container [] {
-	if ($env.CONTAINER_ID? | is-empty) == false {
-		return $"(ansi purple_bold) [box:($env.CONTAINER_ID)](ansi reset)"
-	} else {
-		""
-	}
- 
-}
-
-let hostname = ( sys host | get hostname )
+use library/function.nu [
+    create_left_prompt,
+    down,
+    get_username,
+    get_hostname,
+    get_container_id,
+    get_git_branch,
+    l,
+    la,
+    y,
+]
+use library/progs.nu
 
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| $"(ansi blue_bold)($env.USER)@($hostname)(ansi reset)(container)(get_git_branch): (create_left_prompt) " }
+$env.PROMPT_COMMAND = {|| $"(ansi blue_bold)(get_username)@(get_hostname)(ansi reset)(get_container_id)(get_git_branch): (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # XDG - Base Directory Specification
@@ -78,30 +56,5 @@ alias vv = uv run
 alias rr = rm --recursive
 alias denter = distrobox enter # enter distrobox container
 
-# Custom commands
-def see [file] { open $file --raw  | nu-highlight }
-def l [] { ls | sort-by type } # Alias for ls and sort-by type
-def la [] { ls --all | sort-by type } # Alias for show all hidden and sort-by type
-
-# Check binary version
-def z-check-system [] {
-    cd ($env.XDG_CONFIG_HOME | path join script);
-    uv run check_version.py;
-}
-
-# Yazi shortcut CWD
-def --env y [...args] {
-	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-	yazi ...$args --cwd-file $tmp
-	let cwd = (open $tmp)
-	if $cwd != "" and $cwd != $env.PWD {
-		cd $cwd
-	}
-	rm -fp $tmp
-}
-
-def z-download [link] {
-	curl -O $link
-}
-
 source zoxide.nu
+source $"($nu.home-path)/.cargo/env.nu"
