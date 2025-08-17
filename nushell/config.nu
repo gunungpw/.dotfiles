@@ -10,10 +10,9 @@ use library/function.nu [
     la,
     y,
 ]
-use library/progs.nu
 
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| $"(ansi blue_bold)(get_username)@(get_hostname)(ansi reset)(get_container_id)(get_git_branch): (create_left_prompt) " }
+$env.PROMPT_COMMAND = {|| $"(ansi yellow_bold)(get_username)@(get_hostname)(ansi reset)(get_container_id)(get_git_branch): (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # XDG - Base Directory Specification
