@@ -92,3 +92,17 @@ VSCodium
 goa-1.0
 monitors.xml*
 mimeapps.list
+autostart
+transmission
+plasma-nm
+ksmserverrc
+kservicemenurc
+kscreenlockerrc
+krunnerrc
+kmousetoolrc
+kmousetool_strokes.txt
+kmenueditrc
+kgammarc
+kded6rc
+kcharselectrc
+gwenviewrc
