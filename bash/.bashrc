@@ -23,28 +23,11 @@ generate_prompt() {
     local RED='\[\e[1;31m\]'
     local RESET='\[\e[0m\]'
 
-    # Determine hostname: use CONTAINER_ID if set, otherwise use \h
-    local hostname="${CONTAINER_ID:-$(hostname)}"
-    local user_host="${BOLD}\u@${hostname}${RESET}"
+    local user_host=$(hostnamectl hostname)
+    local user_name=$(whoami)
     local working_dir=" \w"
 
-    # Check if we're in a git repository
-    if git branch &>/dev/null; then
-        # Get current branch
-        local branch=$(git branch | grep '^*' | sed 's/^* //')
-
-        # Check if working directory is clean
-        local status_indicator=""
-        if ! git status | grep "nothing to commit" >/dev/null 2>&1; then
-            status_indicator="${RED}*${RESET}"
-        fi
-
-        # Construct prompt with git info
-        PS1="${user_host}:${working_dir} [${BLUE}${branch}${RESET}${status_indicator}] \$ "
-    else
-        # Construct prompt without git info
-        PS1="${user_host}:${working_dir} \$ "
-    fi
+    PS1="${BOLD}${user_name}@${user_host}${RESET}:${working_dir} \$ "
 }
 
 # Set the prompt command
@@ -52,8 +35,14 @@ export PROMPT_COMMAND='generate_prompt'
 
 # Alias
 alias ..="cd .."
-alias la="eza -la"
-alias l="eza -l"
+if command -v eza >/dev/null 2>&1; then
+    alias ls="eza"
+    alias la="eza -la"
+    alias l="eza -l"
+else
+    alias la="ls -la"
+    alias l="ls -l"
+fi
 alias rr="rm -r"
 
 # XDG - Base Directory Specification
@@ -87,6 +76,15 @@ export NIMBLE_BIN="$HOME/.nimble/bin"
 export CARGO_BIN="$HOME/.cargo/bin"
 
 # Add directory to PATH
-export PATH="$XDG_BIN_HOME:$NIMBLE_BIN:$CARGO_BIN:$PATH"
+add_to_path() {
+    if [[ ":$PATH:" != *":$1:"* ]]; then
+        export PATH="$1:$PATH"
+    fi
+}
+add_to_path "$XDG_BIN_HOME"
+add_to_path "$NIMBLE_BIN"
+add_to_path "$CARGO_BIN"
 
-eval "$(zoxide init bash)"
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init bash)"
+fi
