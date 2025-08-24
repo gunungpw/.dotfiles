@@ -40,8 +40,14 @@ $env.LESSHISTFILE = $env.XDG_DATA_HOME | path join history_less
 $env.PYTHON_HISTORY = $env.XDG_DATA_HOME | path join history_python
 $env._ZO_DATA_DIR = $env.XDG_DATA_HOME | path join zoxide
 
+# Binary Directory Variable
+$env.NIMBLE_BIN = $nu.home-path | path join .nimble bin
+$env.CARGO_BIN = $nu.home-path | path join .cargo bin
+
 # Add directory to PATH
 path add $env.XDG_BIN_HOME
+path add $env.NIMBLE_BIN
+path add $env.CARGO_BIN
 
 $env.config.show_banner = false
 $env.config.history.file_format = "sqlite"
@@ -56,4 +62,3 @@ alias rr = rm --recursive
 alias denter = distrobox enter # enter distrobox container
 
 source zoxide.nu
-source $"($nu.home-path)/.cargo/env.nu"

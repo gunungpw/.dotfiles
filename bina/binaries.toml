@@ -17,12 +17,6 @@ exe = "zoxide"
 version_arg = "--version"
 
 [[binaries]]
-name = "bun"
-repo = "oven-sh/bun"
-exe = "bun"
-version_arg = "--version"
-
-[[binaries]]
 name = "jj"
 repo = "jj-vcs/jj"
 exe = "jj"
@@ -62,4 +56,16 @@ version_arg = "--version"
 name = "eza"
 repo = "eza-community/eza"
 exe = "eza"
+version_arg = "--version"
+
+[[binaries]]
+name = "bat"
+repo = "sharkdp/bat"
+exe = "bat"
+version_arg = "--version"
+
+[[binaries]]
+name = "rclone"
+repo = "rclone/rclone"
+exe = "rclone"
 version_arg = "--version"

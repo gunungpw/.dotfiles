@@ -10,9 +10,6 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-## Enables displaying colors in the terminal
-export TERM=xterm-color
-
 ## Prevent accidental overwrites when using IO redirection
 set -o noclobber
 
@@ -26,21 +23,22 @@ generate_prompt() {
     local RED='\[\e[1;31m\]'
     local RESET='\[\e[0m\]'
 
-    # Base prompt components
-    local user_host="${BOLD}\u@\h${RESET}"
+    # Determine hostname: use CONTAINER_ID if set, otherwise use \h
+    local hostname="${CONTAINER_ID:-$(hostname)}"
+    local user_host="${BOLD}\u@${hostname}${RESET}"
     local working_dir=" \w"
 
     # Check if we're in a git repository
     if git branch &>/dev/null; then
         # Get current branch
         local branch=$(git branch | grep '^*' | sed 's/^* //')
-        
+
         # Check if working directory is clean
         local status_indicator=""
         if ! git status | grep "nothing to commit" >/dev/null 2>&1; then
             status_indicator="${RED}*${RESET}"
         fi
-        
+
         # Construct prompt with git info
         PS1="${user_host}:${working_dir} [${BLUE}${branch}${RESET}${status_indicator}] \$ "
     else
@@ -56,6 +54,7 @@ export PROMPT_COMMAND='generate_prompt'
 alias ..="cd .."
 alias la="eza -la"
 alias l="eza -l"
+alias rr="rm -r"
 
 # XDG - Base Directory Specification
 export XDG_CONFIG_HOME="$HOME/.dotfiles"
@@ -83,5 +82,11 @@ export PYTHON_HISTORY="$XDG_DATA_HOME/history_python"
 export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide"
 export HISTFILE="$XDG_DATA_HOME/bash_history"
 
+# Binary Directory Variable
+export NIMBLE_BIN="$HOME/.nimble/bin"
+export CARGO_BIN="$HOME/.cargo/bin"
+
 # Add directory to PATH
-export PATH="$XDG_BIN_HOME:$PATH"
+export PATH="$XDG_BIN_HOME:$NIMBLE_BIN:$CARGO_BIN:$PATH"
+
+eval "$(zoxide init bash)"
