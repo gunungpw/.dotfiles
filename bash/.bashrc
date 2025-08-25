@@ -1,16 +1,19 @@
-# don't put duplicate lines in the history.
+# Prevent duplicate lines or lines starting with a space in the history
 HISTCONTROL=ignoredups:ignorespace
-# for setting history length see HISTSIZE and HISTFILESIZE
+
+# Set history size (in-memory and file)
 HISTSIZE=1000
 HISTFILESIZE=2000
+# Add timestamps to history entries
+HISTTIMEFORMAT="%F %T "
 
-# append to the history file, don't overwrite it
+# Append to the history file, don't overwrite it
 shopt -s histappend
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+
+# Update window size after each command
 shopt -s checkwinsize
 
-## Prevent accidental overwrites when using IO redirection
+# Prevent accidental overwrites with IO redirection
 set -o noclobber
 
 ## Set the prompt to display the current git branch
@@ -23,11 +26,16 @@ generate_prompt() {
     local RED='\[\e[1;31m\]'
     local RESET='\[\e[0m\]'
 
-    local user_host=$(hostnamectl hostname)
+    local user_host
+    if [[ -n "$CONTAINER_ID" ]]; then
+        user_host="box:$CONTAINER_ID"
+    else
+        user_host="$HOSTNAME"
+    fi
     local user_name=$(whoami)
     local working_dir=" \w"
 
-    PS1="${BOLD}${user_name}@${user_host}${RESET}:${working_dir} \$ "
+    PS1="${BOLD}${user_name}@${user_host}${RESET}:${working_dir} ❭ "
 }
 
 # Set the prompt command
