@@ -12,15 +12,6 @@ export def create_left_prompt [] {
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
 
-export def get_git_branch [] {
-    if (which git | is-empty) { return "" }
-
-    let git_current_ref = (do { git rev-parse --abbrev-ref HEAD } | complete | get stdout | str trim)
-    if ($git_current_ref != "") { return $"(ansi cyan_bold)[($git_current_ref)](ansi reset)" }
-
-    return ""
-}
-
 # Get CONTAINER_ID envar from distrobox
 export def get_container_id [] {
 	if ($env.CONTAINER_ID? | is-empty) == false {

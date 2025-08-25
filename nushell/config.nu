@@ -5,14 +5,13 @@ use library/function.nu [
     get_username,
     get_hostname,
     get_container_id,
-    get_git_branch,
     l,
     la,
     y,
 ]
 
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| $"(ansi yellow_bold)(get_username)@(get_hostname)(ansi reset)(get_container_id)(get_git_branch): (create_left_prompt) " }
+$env.PROMPT_COMMAND = {|| $"(ansi yellow_bold)(get_username)@(get_hostname)(ansi reset)(get_container_id): (create_left_prompt) " }
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # XDG - Base Directory Specification
@@ -51,7 +50,7 @@ path add $env.CARGO_BIN
 
 $env.config.show_banner = false
 $env.config.history.file_format = "sqlite"
-$env.config.shell_integration.osc133 = false
+$env.config.shell_integration.osc133 = true
 $env.config.completions.algorithm = "fuzzy"
 
 alias vw = overlay use .venv/Scripts/activate.nu # windows activate virtual environment
