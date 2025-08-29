@@ -34,10 +34,11 @@ $env.BUN_INSTALL = $nu.home-path | path join .local
 $env.BUN_INSTALL_DIR_CACHE = $nu.home-path | path join .local cache
 
 # History Environment Variable
-$env.NODE_REPL_HISTORY = $env.XDG_DATA_HOME | path join history_node
-$env.LESSHISTFILE = $env.XDG_DATA_HOME | path join history_less
-$env.PYTHON_HISTORY = $env.XDG_DATA_HOME | path join history_python
-$env._ZO_DATA_DIR = $env.XDG_DATA_HOME | path join zoxide
+$env.HISTORY_DIR = $nu.home-path | path join .local history
+$env.NODE_REPL_HISTORY = $env.HISTORY_DIR | path join history_node
+$env.LESSHISTFILE = $env.HISTORY_DIR | path join history_less
+$env.PYTHON_HISTORY = $env.HISTORY_DIR | path join history_python
+$env._ZO_DATA_DIR = $env.HISTORY_DIR | path join zoxide
 
 # Binary Directory Variable
 $env.NIMBLE_BIN = $nu.home-path | path join .nimble bin
@@ -60,7 +61,7 @@ alias vl = overlay use .venv/bin/activate.nu # linux activate virtual environmen
 
 alias vv = uv run
 alias rr = rm --recursive
-alias denter = distrobox enter # enter distrobox container
+alias de = distrobox enter # enter distrobox container
 
 source zoxide.nu
 source atuin.nu
