@@ -15,7 +15,7 @@ $env.PROMPT_COMMAND = {|| $"(ansi yellow_bold)(get_username)@(get_hostname)(ansi
 $env.PROMPT_COMMAND_RIGHT = {||}
 
 # XDG - Base Directory Specification
-$env.XDG_CONFIG_HOME = $nu.home-path | path join .dotfiles
+$env.XDG_CONFIG_HOME = $nu.home-path | path join .local dotfiles
 $env.XDG_BIN_HOME = $nu.home-path | path join .local bin
 $env.XDG_DATA_HOME = $nu.home-path | path join .local share
 $env.XDG_CACHE_HOME = $nu.home-path | path join .local cache

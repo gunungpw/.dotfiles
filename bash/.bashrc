@@ -82,6 +82,7 @@ export HISTFILE="$XDG_DATA_HOME/bash_history"
 # Binary Directory Variable
 export NIMBLE_BIN="$HOME/.nimble/bin"
 export CARGO_BIN="$HOME/.cargo/bin"
+export ZIG_BIN="$HOME/.zig"
 
 # Add directory to PATH
 add_to_path() {
@@ -92,7 +93,14 @@ add_to_path() {
 add_to_path "$XDG_BIN_HOME"
 add_to_path "$NIMBLE_BIN"
 add_to_path "$CARGO_BIN"
+add_to_path "$ZIG_BIN"
 
 if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init bash)"
 fi
+
+source "$XDG_CONFIG_HOME/bash/atuin.bash"
+
+# bun
+export BUN_INSTALL="$HOME/.local/share/reflex/bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
